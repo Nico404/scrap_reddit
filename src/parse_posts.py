@@ -16,6 +16,6 @@ def parse_posts(posts):
             id = post['id']
             created_utc = post['created_utc']
             selftext = ' '.join(post['selftext'].splitlines())
-            row = (id, url, title, num_comments, created_utc, selftext)
+            row = (id, url, created_utc, title, num_comments, selftext)
             rowList.append(row)
     return rowList
