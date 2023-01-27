@@ -13,3 +13,4 @@ def save_csv(tuple_list):
         # csv_content.writerow(['title', 'num_comments', 'created_utc', 'url', 'id', 'selftext'])
         csv_content.writerows(tuple_list)
         print(len(tuple_list), 'post submissions written to csv file.')
+    return len(tuple_list)

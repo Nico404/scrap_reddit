@@ -9,13 +9,13 @@ def parse_posts(posts):
     """
     rowList = list()
     for post in posts:
-        if post['selftext'] != '[removed]':  # trash empty posts
-            title = post['title']
-            num_comments = post['num_comments']
-            url = post['url']
-            id = post['id']
-            created_utc = post['created_utc']
-            selftext = ' '.join(post['selftext'].splitlines())
-            row = (id, url, created_utc, title, num_comments, selftext)
+        if post["selftext"] != "[removed]":  # trash empty posts
+            title = post["title"]
+            num_comments = post["num_comments"]
+            url = post["url"]
+            id = post["id"]
+            created_utc = post["created_utc"]
+            selftext = " ".join(post["selftext"].splitlines())
+            row = (id, url, created_utc, num_comments, title, selftext)
             rowList.append(row)
     return rowList
