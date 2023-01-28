@@ -12,3 +12,11 @@ scores = prediction["scores"]
 
 for i in range(len(labels)):
     print(labels[i], ":", scores[i])
+
+# INFO : 0.2527323067188263
+# NTA : 0.13906826078891754
+# NAH : 0.13684919476509094
+# YTA : 0.13664470613002777
+# ESH : 0.13000330328941345
+# YWBTA : 0.11460532993078232
+# YWNBTA : 0.0900968685746193
