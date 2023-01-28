@@ -9,7 +9,9 @@ def parse_posts(posts):
     """
     rowList = list()
     for post in posts:
-        if post["selftext"] != "[removed]":  # trash empty posts
+        if (
+            post["selftext"] != "[removed]" and post["num_comments"] > 1
+        ):  # trash empty posts
             title = post["title"]
             num_comments = post["num_comments"]
             url = post["url"]
@@ -32,11 +34,13 @@ def parse_comments(comments):
     """
     rowList = list()
     for comment in comments:
-        id = comment["id"]
-        score = comment["score"]
-        body = " ".join(comment["body"].splitlines())
-        permalink = comment["permalink"]
+        if comment["body"] != "[removed]":  # trash empty comments
+            id = comment["id"]
+            parent_id = comment["parent_id"]
+            score = comment["score"]
+            body = " ".join(comment["body"].splitlines())
+            permalink = comment["permalink"]
 
-        row = (id, score, body, permalink)
-        rowList.append(row)
+            row = (id, parent_id, score, body, permalink)
+            rowList.append(row)
     return rowList

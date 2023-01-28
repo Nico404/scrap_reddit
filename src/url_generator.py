@@ -31,13 +31,13 @@ def comments_url_generator(id):
         post submission id
     Returns:
         string:
-        https://api.pushshift.io/reddit/comment/search?linkid=10mj0ug&limit=10&sort_type=score
+        https://api.pushshift.io/reddit/comment/search?linkid=10mj0ug&limit=10&sort_type=score:desc
     """
 
     base = "https://api.pushshift.io/reddit/comment/search"
 
     parameters = {
-        "sort_type": "score",  # only the best comments
+        "sort_type": "score:desc",  # only the best comments
         "limit": 20,  # max number of comments
         "linkid": id,
     }
