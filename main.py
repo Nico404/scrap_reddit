@@ -1,21 +1,34 @@
-from tqdm import *
+from tqdm import tqdm
+import time
 
-from src.save_csv import save_csv
-from src.get_submission_API import get_posts, get_comments
-from src.parse_submission_API import parse_posts, parse_comments
 from private.get_token import get_token
+from src.get_posts import get_posts
+from src.get_comments import get_comments
+from src.processed_ids import load_processed_ids
 
 
-access_token = get_token()
-subreddit = "AmItheAsshole"
+def main():
+    access_token = get_token()
+    subreddit = "AmItheAsshole"
+    after = None
 
-submission_posts = get_posts(access_token, subreddit)  # first call when after is None
-posts, after = parse_posts(submission_posts)
+    with tqdm(total=None, desc="Fetching Reddit Posts 25 at a time") as pbar:
+        while True:
+            result, after = get_posts(access_token, subreddit, after)
+            time.sleep(0.3)
+            if result:
+                after = after
+                pbar.update(1)
+            else:
+                "Nothing more to get..."
+                break
 
-for loop in tqdm(range(50000)):
-    posts, after = parse_posts(get_posts(access_token, subreddit, after=after))
-    save_csv(posts, "posts_v2_2")
-    for post in posts:
-        submission_comments = get_comments(access_token, subreddit, post[0])
-        comments = parse_comments(submission_comments)
-        save_csv(comments, "comments_v2_2")
+    with tqdm(total=None, desc="Fetching Reddit comments from fetched posts") as pbar:
+        for id in load_processed_ids("post"):
+            result = get_comments(access_token, subreddit, id)
+            time.sleep(0.3)
+            pbar.update(1)
+
+
+if __name__ == "__main__":
+    main()
