@@ -44,7 +44,6 @@ def get_comments(access_token, subreddit, post_id):
             write_comments_to_csv(new_comments)
             return response_json
         else:
-            print("All comments have been processed.")
             return None
     else:
         return None

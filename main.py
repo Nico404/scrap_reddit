@@ -12,22 +12,19 @@ def main():
     subreddit = "AmItheAsshole"
     after = None
 
-    with tqdm(total=None, desc="Fetching Reddit Posts 25 at a time") as pbar:
+    with tqdm(total=None, desc="Fetching Reddit Posts & their comments") as pbar:
         while True:
-            result, after = get_posts(access_token, subreddit, after)
-            time.sleep(0.3)
-            if result:
+            posts, after = get_posts(access_token, subreddit, after)
+            if posts:
                 after = after
                 pbar.update(1)
+                time.sleep(2)
+                for post in posts:
+                    get_comments(access_token, subreddit, post[0])
+                    time.sleep(2)
             else:
                 "Nothing more to get..."
                 break
-
-    with tqdm(total=None, desc="Fetching Reddit comments from fetched posts") as pbar:
-        for id in load_processed_ids("post"):
-            result = get_comments(access_token, subreddit, id)
-            time.sleep(0.3)
-            pbar.update(1)
 
 
 if __name__ == "__main__":

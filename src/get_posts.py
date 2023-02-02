@@ -31,7 +31,7 @@ def get_posts(access_token, subreddit, after=None):
         "User-Agent": "Nico404",
     }
     api = "https://oauth.reddit.com"
-    params = {"limit": "25", "sort_by": "new"}
+    params = {"limit": "25", "sort_by": "top"}
 
     if after:
         params["after"] = after
