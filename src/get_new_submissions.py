@@ -10,6 +10,10 @@ def get_new_submissions(submissions, processed_ids):
     """
     new_submissions = []
     for submission in submissions:
-        if submission["data"]["id"] not in processed_ids:
+        if (
+            submission["data"]["id"] not in processed_ids
+            and submission["kind"] != "more"
+            and submission["data"]["stickied"] == False
+        ):
             new_submissions.append(submission)
     return new_submissions

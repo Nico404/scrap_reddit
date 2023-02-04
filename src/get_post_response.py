@@ -17,7 +17,7 @@ def get_post_response(headers, api, subreddit, params):
     """
     try:
         response = requests.get(
-            "{}/r/{}/new".format(api, subreddit),
+            "{}/r/{}/".format(api, subreddit),
             headers=headers,
             params=params,
             timeout=5,
@@ -25,7 +25,7 @@ def get_post_response(headers, api, subreddit, params):
     except requests.exceptions.Timeout:
         time.sleep(5)
         response = requests.get(
-            "{}/r/{}/new".format(api, subreddit),
+            "{}/r/{}/".format(api, subreddit),
             headers=headers,
             params=params,
             timeout=5,

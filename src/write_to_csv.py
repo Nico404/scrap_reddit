@@ -40,7 +40,9 @@ def write_comments_to_csv(comments):
         )
         for comment in comments:
             try:
-                if comment["data"]["stickied"] == False:  # no sub topics
+                if (
+                    comment["data"]["stickied"] == False and comment["kind"] != "more"
+                ):  # no sub topics
                     writer.writerow(
                         {
                             "id": comment["data"]["id"],
@@ -51,4 +53,4 @@ def write_comments_to_csv(comments):
                         }
                     )
             except Exception as e:
-                continue
+                print(comment)

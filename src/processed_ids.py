@@ -32,4 +32,5 @@ def save_processed_ids(submissions, type):
     filename = f"data/processed_{type}_ids.txt"
     with open(filename, "a") as f:
         for submission in submissions:
-            f.write(submission["data"]["id"] + "\n")
+            if submission["kind"] != "more" and submission["data"]["stickied"] == False:
+                f.write(submission["data"]["id"] + "\n")

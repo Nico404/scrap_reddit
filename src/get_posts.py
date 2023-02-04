@@ -26,12 +26,19 @@ def get_posts(access_token, subreddit, after=None):
         If no new posts are retrieved, returns (None, None).
     """
 
+    # Load the last after value from file
+    try:
+        with open("data/last_after.txt", "r") as f:
+            after = f.read()
+    except FileNotFoundError:
+        after = None
+
     headers = {
         "Authorization": "bearer " + access_token,
         "User-Agent": "Nico404",
     }
     api = "https://oauth.reddit.com"
-    params = {"limit": "25", "sort_by": "top"}
+    params = {"limit": "25", "sort_by": "new"}
 
     if after:
         params["after"] = after
@@ -42,6 +49,10 @@ def get_posts(access_token, subreddit, after=None):
     if response:
         response_json = response.json()  # full listing with after and children
         after = response_json["data"]["after"]
+        if after:
+            with open("data/last_after.txt", "w") as f:
+                f.write(after)
+
         posts = response_json["data"]["children"]  # only t3 type == actual post
         new_posts = get_new_submissions(posts, processed_post_ids)
         if new_posts:

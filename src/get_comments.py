@@ -29,7 +29,7 @@ def get_comments(access_token, subreddit, post_id):
         "User-Agent": "Nico404",
     }
     api = "https://oauth.reddit.com"
-    params = {"limit": "200", "sort_by": "top"}
+    params = {"limit": "100", "sort_by": "top"}
 
     processed_ids = load_processed_ids("comment")
     response = get_comment_response(headers, subreddit, api, params, post_id)
@@ -38,7 +38,6 @@ def get_comments(access_token, subreddit, post_id):
         response_json = response.json()  # full listing
         comments = response_json[1]["data"]["children"]  # actual comment, idx0 is post
         new_comments = get_new_submissions(comments, processed_ids)
-
         if new_comments:
             save_processed_ids(new_comments, "comment")
             write_comments_to_csv(new_comments)

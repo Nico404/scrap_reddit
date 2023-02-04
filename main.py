@@ -19,12 +19,11 @@ def main():
                 after = after
                 pbar.update(1)
                 time.sleep(2)
-                for post in posts:
-                    get_comments(access_token, subreddit, post[0])
+                for post in posts["data"]["children"]:
+                    get_comments(access_token, subreddit, post["data"]["id"])
                     time.sleep(2)
             else:
-                "Nothing more to get..."
-                break
+                pass
 
 
 if __name__ == "__main__":
