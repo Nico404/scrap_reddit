@@ -1,4 +1,3 @@
-from tqdm import tqdm
 import time
 
 from private.get_token import get_token
@@ -12,18 +11,16 @@ def main():
     subreddit = "AmItheAsshole"
     after = None
 
-    with tqdm(total=None, desc="Fetching Reddit Posts & their comments") as pbar:
-        while True:
-            posts, after = get_posts(access_token, subreddit, after)
-            if posts:
-                after = after
-                pbar.update(1)
+    while True:
+        posts, after = get_posts(access_token, subreddit, after)
+        if posts:
+            after = after
+            time.sleep(1)
+            for post in posts["data"]["children"]:
+                get_comments(access_token, subreddit, post["data"]["id"])
                 time.sleep(1)
-                for post in posts["data"]["children"]:
-                    get_comments(access_token, subreddit, post["data"]["id"])
-                    time.sleep(1)
-            else:
-                break
+        else:
+            break
 
 
 if __name__ == "__main__":
