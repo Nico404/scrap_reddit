@@ -60,7 +60,9 @@ def get_posts(access_token, subreddit, after=None):
             write_posts_to_csv(new_posts)
             return response_json, after
         else:
-            print("All posts have been processed.")
+            print("All posts have been processed, resetting last_post persistent file.")
+            with open("last_post.txt", "w") as f:
+                f.write("")
             return None, None
     else:
         return None, None
