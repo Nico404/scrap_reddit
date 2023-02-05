@@ -9,11 +9,9 @@ from src.processed_ids import load_processed_ids
 def main():
     access_token = get_token()
     subreddit = "AmItheAsshole"
-    after = None
-    before = None
 
     while True:
-        posts, after = get_posts(access_token, subreddit, after, before)
+        posts = get_posts(access_token, subreddit)
         if posts:
             time.sleep(1)
             # for post in posts["data"]["children"]:
