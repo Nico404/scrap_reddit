@@ -10,15 +10,15 @@ def main():
     access_token = get_token()
     subreddit = "AmItheAsshole"
     after = None
+    before = None
 
     while True:
-        posts, after = get_posts(access_token, subreddit, after)
+        posts, after = get_posts(access_token, subreddit, after, before)
         if posts:
-            after = after
             time.sleep(1)
-            for post in posts["data"]["children"]:
-                get_comments(access_token, subreddit, post["data"]["id"])
-                time.sleep(1)
+            # for post in posts["data"]["children"]:
+            #     get_comments(access_token, subreddit, post["data"]["id"])
+            #     time.sleep(1)
         else:
             break
 

@@ -10,7 +10,7 @@ from src.processed_ids import save_processed_ids
 from src.write_to_csv import write_posts_to_csv
 
 
-def get_posts(access_token, subreddit, after=None):
+def get_posts(access_token, subreddit, after=None, before=None):
     """
     This function retrieves the top 25 posts from a given subreddit and writes new, unprocessed posts to a CSV file.
     The function uses the given access token to authenticate the request and the Reddit API endpoint.
@@ -33,15 +33,26 @@ def get_posts(access_token, subreddit, after=None):
     except FileNotFoundError:
         after = None
 
+    try:
+        with open("data/last_before.txt", "r") as f:
+            before = f.read()
+    except FileNotFoundError:
+        before = None
+
     headers = {
         "Authorization": "bearer " + access_token,
         "User-Agent": "Nico404",
     }
     api = "https://oauth.reddit.com"
-    params = {"limit": "25", "sort_by": "new"}
+    params = {"limit": "25", "sort_by": "top"}
 
     if after:
         params["after"] = after
+        params["before"] = None
+
+    if before:
+        params["before"] = before
+        params["after"] = None
 
     processed_post_ids = load_processed_ids("post")
     response = get_post_response(headers, api, subreddit, params)
@@ -60,9 +71,13 @@ def get_posts(access_token, subreddit, after=None):
             write_posts_to_csv(new_posts)
             return response_json, after
         else:
-            print("All posts have been processed, resetting last_post persistent file.")
-            with open("last_post.txt", "w") as f:
-                f.write("")
-            return None, None
+            print("All posts have been processed. Moving backwards...")
+            with open("data/last_after.txt", "w") as f:
+                f.write("")  # empty after
+            if before:
+                with open("data/last_before.txt", "w") as f:
+                    f.write(before)  # set before
+            print(response_json, before)
+            return response_json, before
     else:
         return None, None
