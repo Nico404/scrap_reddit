@@ -14,9 +14,9 @@ def main():
         posts = get_posts(access_token, subreddit)
         if posts:
             time.sleep(1)
-            # for post in posts["data"]["children"]:
-            #     get_comments(access_token, subreddit, post["data"]["id"])
-            #     time.sleep(1)
+            for post in posts["data"]["children"]:
+                get_comments(access_token, subreddit, post["data"]["id"])
+                time.sleep(1)
         else:
             break
 
