@@ -1,35 +1,10 @@
 # scrap_reddit
 little python project for scrapping AITA subreddit.
-The goal is to get post submissions and their best comments to train 
-an AI model to answer an AITA prompt
+The goal is to get post submissions and their best comments in order to train an AI model to answer an AITA prompt
 
 Since pushshift api wrappers PAWR and PSAW are down or not maintened at the moment, and the first attempt to use pushshift API yielded unexpected results from comments & overall unreliable data... 
 
-This little project is based on generated API URL from the Reddit Official API 
+This little project is based on the Reddit Official API, and uses simple pagination parameter usage.
 https://www.reddit.com/dev/api/
 
-
-# Data Science
-
-Fetch tons of reddit submission posts & associated comments.
-There needs to be enough comments on the posts.
-
-## 2 goals
-
-1. be able to give a verdict: YTA => **classification problem**
-
-- naive approach => count number of NTA, YTA, ESH, NTA... => show distribution
-
-- Zero-Shot Classification
-Text Input: post title / post content
-Candidate Labels: YTA, YWBTA, NTA, YWNBTA, ESH, NAH, INFO
-Output: YTA 0.900 NTA 0.100 ESH 0.000...
-
-- LLM to "fine-tuner" ?
-
-
-2. be able to generate an answer based on context: YTA, that's why... => **text generation problem**
-
-- find a model and feed him the submission post (and verdict from 1?). 
-=> verdict + text generated
-- conversational ??, Question answering with only context and no question ??
+Since the Content that can be pull from the API at any given time is very limited, it is required to run this a few time to get a big enough Dataset. 
