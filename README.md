@@ -22,13 +22,13 @@ The content that can be pulled from the API at any given time is very limited by
   <tr>
     <td>10uxee0</td>
     <td>1181</td>
-    <td>I know this post sounds super petty, but this is the most ridiculous fight I've had with my boyfriend, and unfortunately it's where we're at.I [F28] have never shaved in my life. I think it's up to the person regardless, but I've also just never really had a lot of hair. My boyfriend recently stayed over and asked to borrow a razor. Since I don't shave, I didn't have one on hand, and apparently that grossed him out. He told me that it was unhygienic to not shave and we argued back and forth about the issue when I finally told him that I'd only start shaving my legs if he shaved his first. He called me immature and petty, whereas I think he's being super fixated on this weird thing. It honestly wouldn't really bother me to shave, but I'm just more irked at his statements where he basically called me dirty. I was serious though: I'll shave whenever he shaves too.We're at an impasse but I wonder if I am being a little too petty about the whole thing. </td>
+    <td>I know this post sounds super petty, but this is the most ridiculous fight I've had with my boyfriend... I was serious though: I'll shave whenever he shaves too.We're at an impasse but I wonder if I am being a little too petty about the whole thing. </td>
     <td>AITA for telling my boyfriend I'll shave my legs if he shaves his?</td>
     <td>https://www.reddit.com/r/AmItheAsshole/comments/10uxee0/aita_for_telling_my_boyfriend_ill_shave_my_legs/</td>
   </tr>
   <td>10ur722</td>
   <td>1849</td>
-  <td>My daughter Bryn F9 is going on a trip to a nearby water park with her class next week. She loves water and has been talking about it for months, so I was a bit thrown off when she came home crying a few days ago and told me she didn’t want to go... I immediately sent Ms. N an email condemning her actions. She sent me back an email with a bunch of bs that basically ended with “if Bryn goes on the trip, she has to be Ben’s buddy.”</td>
+  <td>My daughter Bryn F9 is going on a trip to a nearby water park with her class next week... She sent me back an email with a bunch of bs that basically ended with “if Bryn goes on the trip, she has to be Ben’s buddy.”</td>
   <td>AITA for not letting my daughter go on a school trip?</td>
   <td>https://www.reddit.com/r/AmItheAsshole/comments/10ur722/aita_for_not_letting_my_daughter_go_on_a_school/</td>
 </tr>
